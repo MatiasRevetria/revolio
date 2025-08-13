@@ -1,22 +1,44 @@
+/* Contenedor del héroe */
 #hero-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8%;
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  min-height: 100vh;          /* ocupa la pantalla */
+  max-width: 1200px;          /* no más de esto en desktop */
+  margin: 0 auto;
+  padding: 4rem 1rem;
 }
 
+/* Título: responsive con clamp */
 .text-1{
-    font-size: 10rem;
-    width: 600px;
+  font-size: clamp(2rem, 6vw, 4rem);  /* 2rem–4rem según viewport */
+  line-height: 1.1;
+  margin: 0 0 1rem;
 }
 
+/* Texto: limitar ancho para mejor lectura */
 .text-container{
-    width: 700px;
+  max-width: 60ch;
 }
 
-img{
-    width: 700px;
-    height: 800px;
-    border-radius: 6px;
+/* ¡No uses img global! Solo la del héroe */
+#hero-container img{
+  width: min(38vw, 520px);    /* usa porcentaje o límite */
+  height: auto;               /* mantiene proporción */
+  aspect-ratio: 4 / 5;        /* opcional: mantiene formato */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Responsive: en tablet/móvil apilar y centrar */
+@media (max-width: 992px){
+  #hero-container{
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+  #hero-container img{
+    width: min(80vw, 420px);
+  }
 }
