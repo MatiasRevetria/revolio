@@ -8,9 +8,42 @@
 }
 
 #mision-article{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background-color: dodgerblue;
+    background-color: rgba(0, 0, 0, 0.925);
     color: azure;
     width: 80%;
+    height: 200px;
     border-radius: 6px;
+    margin-bottom: 5%;
+}
+
+#mision-article h2{
+    font-size: 2.5rem;
+}
+
+#skills{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+}
+
+#left-mision{
+    width: 300px;
+    height: 300px;
+}
+#right-mision{
+    width: min(50vw,1000px);
+    background-color: green;
+}
+
+.col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
 }

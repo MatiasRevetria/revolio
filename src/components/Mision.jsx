@@ -10,10 +10,13 @@ const Mision = ()=>{
             </section>
             <section id="skills">
             <div id="left-mision">
-
+                <h1>HOW CAN I HELP YOU?</h1>
             </div>
-            <div id="right-mision">
-
+            <div id="right-mision" className="row row-cols-2">
+                <div className="col d-flex justify-content-center align-items-center">Column</div>
+                <div className="col d-flex justify-content-center align-items-center">Column</div>
+                <div className="col d-flex justify-content-center align-items-center">Column</div>
+                <div className="col d-flex justify-content-center align-items-center">Column</div>
             </div>
             </section>
         </div>
