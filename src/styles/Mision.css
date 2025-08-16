@@ -17,7 +17,7 @@
     width: 80%;
     height: 200px;
     border-radius: 6px;
-    margin-bottom: 5%;
+    margin-bottom: 4%;
 }
 
 #mision-article h2{
@@ -38,12 +38,17 @@
 }
 #right-mision{
     width: min(50vw,1000px);
-    background-color: green;
 }
 
 .col{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 300px;
+    border-radius: 6px;
+}
+
+.col:hover{
+    background-color: rgb(150, 145, 145);
 }
