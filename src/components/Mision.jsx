@@ -1,14 +1,34 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import '../styles/Mision.css'
 
 const Mision = ()=>{
+    const refArticle = useRef();
+    const refSkills = useRef();
+
+    useEffect(()=>{
+        const observer = new IntersectionObserver(
+            (entries,obs)=>{
+                entries.forEach((entry)=>{
+                    if (entry.isIntersecting){
+                        entry.target.classList.add('show');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            },
+        {thershold: 0.3}
+    );
+    if (refArticle.current) observer.observe(refArticle.current);
+    if (refSkills.current) observer.observe(refSkills.current);
+    },[]);
+
     return (
         <>
         <div className="mision-container">
-            <section id="mision-article">
+            <section id="mision-article" ref={refArticle} className="appear-y">
+                
             <h2>My mission is to assist people, startups and enterprises design and develop innovative, reliable, engaging and user-friendly software solutions </h2>
             </section>
-            <section id="skills">
+            <section id="skills" ref={refSkills} className="appear-x">
             <div id="left-mision">
                 <h1>HOW CAN I HELP YOU?</h1>
             </div>

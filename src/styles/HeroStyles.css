@@ -42,3 +42,39 @@
     width: min(80vw, 420px);
   }
 }
+
+@keyframes appear-x {
+  from{
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes appear {
+  from{
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.appear-x{
+  opacity: 0;
+}
+
+.appear{
+  opacity: 0;
+}
+
+#box1.show{
+  animation: appear-x 1s ease-out forwards;
+}
+
+#box2.show{
+  animation: appear 1s ease-out forwards;
+}

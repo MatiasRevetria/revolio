@@ -1,3 +1,38 @@
+@keyframes appear-y {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }   
+}
+
+@keyframes appear-x {
+    from{
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.appear-y {
+    opacity: 0;
+}
+
+.appear-x {
+    opacity: 0;
+}
+
+#mision-article.show { animation: appear-y 1s ease-out forwards; }
+#skills.show { animation: appear-x 1s ease-out forwards;}
+
+
+
 .mision-container{
     display: flex;
     flex-direction: column;
@@ -19,6 +54,8 @@
     border-radius: 6px;
     margin-bottom: 4%;
 }
+
+
 
 #mision-article h2{
     font-size: 2.5rem;
@@ -47,8 +84,4 @@
     align-items: center;
     height: 300px;
     border-radius: 6px;
-}
-
-.col:hover{
-    background-color: rgb(150, 145, 145);
 }
