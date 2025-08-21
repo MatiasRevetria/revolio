@@ -6,7 +6,7 @@ const Contact = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [txtArea, setTxtArea] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState({});
 
     const handleSubmit = (event)=>{
         event.preventDefault();
@@ -36,7 +36,7 @@ const Contact = () => {
 
     return(
         <>
-        <div id="contact-container">
+        <div id="contact-container" className="container-md">
             <div id="text">
                 <h1>Contact with me to build your dream web app/site</h1>
                 <p>Feel free to contact me if you any question. I-m available for new projects or just chatting.</p>
