@@ -71,10 +71,9 @@
 
 #left-mision{
     width: 300px;
-    height: 300px;
 }
 #right-mision{
-    width: min(50vw,1000px);
+    width: min(60vw,1000px);
 }
 
 .col{
@@ -84,4 +83,15 @@
     align-items: center;
     height: 300px;
     border-radius: 6px;
+}
+
+@media (max-width: 760px) {
+    #skills{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3%;
+    }
+    #left-mision{
+        width: 200px;
+    }
 }
