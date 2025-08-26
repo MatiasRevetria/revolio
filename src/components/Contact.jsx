@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../styles/Contact.css'
 
 const Contact = () => {
@@ -7,6 +7,20 @@ const Contact = () => {
     const [email, setEmail] = useState('');
     const [txtArea, setTxtArea] = useState('');
     const [error, setError] = useState({});
+    const ref = useRef();
+
+    useEffect(()=>{
+        const observer = new IntersectionObserver((entries,obs)=>{
+            entries.forEach((entry)=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('show');
+                    obs.unobserve(entry.target);
+                }
+            });
+        },{threshold:0.3}
+    );
+    if (ref.current) observer.observe(ref.current);
+    },[]);
 
     const handleSubmit = (event)=>{
         event.preventDefault();
@@ -15,7 +29,7 @@ const Contact = () => {
         if (!email.trim()) validationErrors.email = "Don't forget your email";
         if (!txtArea.trim()) validationErrors.txtArea = "What's going on inside that mind?";
 
-        if(Object.keys(validationErrors.length)>0){
+        if(Object.keys(validationErrors.length>0)){
             setError(validationErrors);
             return;
         }
@@ -36,14 +50,16 @@ const Contact = () => {
 
     return(
         <>
-        <div id="contact-container" className="container-md">
+        <div id="contact-container" ref={ref} className=" appear container-md">
             <div id="text">
-                <h1>Contact with me to build your dream web app/site</h1>
-                <p>Feel free to contact me if you any question. I-m available for new projects or just chatting.</p>
+                <h1>Contact with me to build your dream web site/app</h1>
+                <p>Feel free to contact me if you have any question. I'm available for new projects or just chatting.</p>
             </div>
             <div id="contact-form">
+            
                 <form onSubmit={handleSubmit}>
-                    <div className="input">
+                    <div id="input-container">
+                        <div className="input">
                         <input type="text" value={name} onChange ={handleChangeName} placeholder="Name" aria-invalid={!!error.name} aria-describedby="name-error"/>
                         {error.name && 
                             <small id="name-error" className="error">
@@ -59,13 +75,13 @@ const Contact = () => {
                             </small>
                         }
                     </div>
+                    </div>
                     <div id="text-area">
                         <textarea value={txtArea} onChange={handleChangeTxtArea} placeholder="Work description"
-                            rows={6} aria-invalid={!!error.txtArea} aria-describedby="message-error">
+                            rows={10} aria-invalid={!!error.txtArea} aria-describedby="message-error" />
                                 {error.txtArea && 
                                     <small id="message-error" className="error">{error.txtArea}</small>
                                 }
-                        </textarea>
                     </div>
                     <button type="submit" className="btn-send">Send</button>
                 </form>
