@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import emailjs from 'emailjs-com';
 import '../styles/Contact.css'
 
 const Contact = () => {
