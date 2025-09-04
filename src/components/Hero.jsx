@@ -23,7 +23,7 @@ const Hero = () => {
     },[])
     
     return(
-        <div className="main-container">
+        <div className="main-container container-md">
 
             <div id="hero-container">
                 <div id="box1" ref={refBox1} className="appear-x">

@@ -23,7 +23,7 @@ const Mision = ()=>{
 
     return (
         <>
-        <div className="mision-container">
+        <div className="mision-container container-md">
             <section id="mision-article" ref={refArticle} className="appear-y">
                 
             <h2>My mission is to assist people, startups and enterprises design and develop innovative, reliable, engaging and user-friendly software solutions </h2>
