@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from 'emailjs-com';
 import '../styles/Contact.css'
+import { toast , Bounce } from "react-toastify";
 
 const Contact = () => {
 
@@ -30,14 +31,45 @@ const Contact = () => {
         if (!email.trim()) validationErrors.email = "Don't forget your email";
         if (!txtArea.trim()) validationErrors.txtArea = "What's going on inside that mind?";
 
-        if(Object.keys(validationErrors.length>0)){
+        if(Object.keys(validationErrors).length>0){
             setError(validationErrors);
             return;
         }
         setEmail('');
         setName('');
         setTxtArea('');
-    }
+
+        emailjs.sendForm('service_ymftvpx','template_5p5in9p',event.target,'sZdsJ_5-W3PWqst8f')
+        .then((result)=>{
+            toast.success('Email sent!',{
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            setName('');
+            setEmail('');
+            setTxtArea('');
+        }).catch((error)=>{
+            toast.error('An error has occured',{
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+            console.log(error.text);
+        });
+    };
 
     const handleChangeName = (event)=>{
         setName(event.target.value);
@@ -61,7 +93,7 @@ const Contact = () => {
                 <form onSubmit={handleSubmit}>
                     <div id="input-container">
                         <div className="input">
-                        <input type="text" value={name} onChange ={handleChangeName} placeholder="Name" aria-invalid={!!error.name} aria-describedby="name-error"/>
+                        <input type="text" value={name} onChange ={handleChangeName} placeholder="Name" aria-invalid={!!error.name} aria-describedby="name-error" name="name"/>
                         {error.name && 
                             <small id="name-error" className="error">
                                 {error.name}
@@ -69,7 +101,7 @@ const Contact = () => {
                         }
                     </div>
                     <div className="input">
-                        <input type="text" value={email} onChange={handleChangeEmail} placeholder="Email" aria-invalid={!!error.email} aria-describedby="email-error"/>
+                        <input type="text" value={email} onChange={handleChangeEmail} placeholder="Email" aria-invalid={!!error.email} aria-describedby="email-error" name="email"/>
                         {error.email &&
                             <small id="email-error" className="error">
                                 {error.email}
@@ -79,7 +111,7 @@ const Contact = () => {
                     </div>
                     <div id="text-area">
                         <textarea value={txtArea} onChange={handleChangeTxtArea} placeholder="Work description"
-                            rows={10} aria-invalid={!!error.txtArea} aria-describedby="message-error" />
+                            rows={10} aria-invalid={!!error.txtArea} aria-describedby="message-error" name="message"/>
                                 {error.txtArea && 
                                     <small id="message-error" className="error">{error.txtArea}</small>
                                 }
