@@ -111,10 +111,11 @@ const Contact = () => {
                     </div>
                     <div id="text-area">
                         <textarea value={txtArea} onChange={handleChangeTxtArea} placeholder="Work description"
-                            rows={10} aria-invalid={!!error.txtArea} aria-describedby="message-error" name="message"/>
+                            rows={10} aria-invalid={!!error.txtArea} aria-describedby="message-error" name="message">
                                 {error.txtArea && 
                                     <small id="message-error" className="error">{error.txtArea}</small>
                                 }
+                                </textarea>
                     </div>
                     <button type="submit" className="btn-send">Send</button>
                 </form>
