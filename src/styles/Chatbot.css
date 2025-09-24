@@ -4,7 +4,7 @@
     margin: 40px auto;
     border-radius: 12px;
     background-color: #f1f1f1;
-    box-shadow: 0 6px 20px rgba(0, 0 , 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0 , 0, 0.5);
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
@@ -20,6 +20,14 @@
     flex-direction: column;
     gap: 10px;
     background-color: white;
+}
+
+.idk{
+  position: relative;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chat-message {

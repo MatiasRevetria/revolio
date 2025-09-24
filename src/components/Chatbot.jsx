@@ -23,7 +23,7 @@ const Chatbot = () => {
         <>
          <div className="chatbot-container">
             <div className="chatbot-window">
-                {messages.map((msg,index)=>(
+                {messages.length == 0 ? (<h1 className="idk"> Let's Talk!</h1>) :messages.map((msg,index)=>(
                     <button key={index} className={`chat-message ${msg.from}`}>
                         {msg.text}
                     </button>
