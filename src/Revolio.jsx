@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Mision from './components/Mision';
 import Contact from './components/Contact';
 import Chatbot from './components/Chatbot';
+import Job from './components/Job';
 
 const Revolio = () => {
   return (
@@ -13,6 +14,7 @@ const Revolio = () => {
     <Hero/>
     <Mision/>
     <Chatbot/>
+    <Job/>
     <Contact/>
     </>
   );
