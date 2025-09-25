@@ -13,8 +13,8 @@ const Revolio = () => {
     <Nav/>
     <Hero/>
     <Mision/>
-    <Chatbot/>
     <Job/>
+    <Chatbot/>
     <Contact/>
     </>
   );

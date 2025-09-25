@@ -31,16 +31,18 @@ const Job = ()=> {
         <div className="first-container appear-y" ref={refTitle}>
             <h1>Jobs</h1>
         </div>
-        <div className="jobs-container appear-x" ref={refJobs}>
-        {jobs.map((job,index)=>(
-            <a href={job.link}>
-                <button className="job-card" key={index}>
-                <h1>{job.title}</h1>
-                <p>{job.description}</p>
-                <p>{job.time}</p>
-            </button>
-            </a>
-        ))}
+        <div className="row_row-cols-2" >
+            <div className="jobs-container appear-x" ref={refJobs}>
+                {jobs.map((job,index)=>(
+                    <a href={job.link}>
+                        <button className="job-card" key={index}>
+                        <h1>{job.title}</h1>
+                        <p>{job.description}</p>
+                        <p>{job.time}</p>
+                    </button>
+                    </a>
+                ))}
+            </div>
     </div>
     </div>
     </>
