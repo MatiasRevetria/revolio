@@ -3,6 +3,8 @@ import Revolio from './Revolio';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import {Bounce, ToastContainer} from 'react-toastify';
+import Job from "./components/Job";
+import Mision from "./components/Mision";
 
 function App() {
   return (

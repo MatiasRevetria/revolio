@@ -11,11 +11,21 @@ const Revolio = () => {
   return (
     <>
     <Nav/>
-    <Hero/>
-    <Mision/>
-    <Job/>
+    <section id ='hero'>
+      <Hero/>
+    </section>
+    <section id='mision'>
+      <Mision/>
+    </section>
+    <section id='jobs'>
+      <Job/>
+    </section>
+    
     <Chatbot/>
-    <Contact/>
+    
+    <section id='contact'>
+      <Contact/>
+    </section>
     </>
   );
 };
