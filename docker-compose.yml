@@ -4,4 +4,4 @@ services:
     container_name: revolio-portfolio
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "${PORTFOLIO_PORT:-18473}:80"
