@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+	font-family: 'DM Sans', sans-serif;
+	color: #172126;
+	background: #eef4f1;
+	color-scheme: light;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background:
+		radial-gradient(circle at 8% 12%, rgba(255, 196, 123, 0.3), transparent 28rem),
+		radial-gradient(circle at 92% 46%, rgba(126, 190, 174, 0.24), transparent 32rem),
+		#eef4f1;
+	color: #172126;
+	transition: color 220ms ease, background-color 220ms ease;
+}
+
+button, input, textarea { font: inherit; }
+a { color: inherit; }
+
+:root[data-theme='dark'] {
+	color: #edf5f1;
+	background: #0e1517;
+	color-scheme: dark;
+}
+
+:root[data-theme='dark'] body {
+	color: #edf5f1;
+	background:
+		radial-gradient(circle at 8% 12%, rgba(216, 138, 78, 0.14), transparent 28rem),
+		radial-gradient(circle at 92% 46%, rgba(24, 124, 100, 0.14), transparent 32rem),
+		#0e1517;
+}
+
+:root[data-theme='dark'] #nav {
+	border-color: rgba(255, 255, 255, 0.1);
+	background: rgba(23, 33, 38, 0.92);
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme='dark'] .nav-brand,
+:root[data-theme='dark'] .nav-menu a,
+:root[data-theme='dark'] .preference-button { color: #edf5f1; }
+
+:root[data-theme='dark'] .nav-preferences,
+:root[data-theme='dark'] .preference-button { border-color: rgba(255, 255, 255, 0.13); }
+
+:root[data-theme='dark'] .nav-menu a:hover,
+:root[data-theme='dark'] .nav-menu a:focus-visible,
+:root[data-theme='dark'] .preference-button:hover,
+:root[data-theme='dark'] .preference-button:focus-visible {
+	color: #f7c979;
+	background: rgba(255, 255, 255, 0.07);
+}
+
+:root[data-theme='dark'] .text-container,
+:root[data-theme='dark'] .service-card p,
+:root[data-theme='dark'] .job-card p,
+:root[data-theme='dark'] .chatbot-status,
+:root[data-theme='dark'] .chatbot-empty p { color: #a8b8b6; }
+
+:root[data-theme='dark'] #left-mision h2,
+:root[data-theme='dark'] .service-card h3,
+:root[data-theme='dark'] .chatbot-heading h2,
+:root[data-theme='dark'] .chatbot-empty { color: #edf5f1; }
+
+:root[data-theme='dark'] #mision-article,
+:root[data-theme='dark'] .chatbot-options,
+:root[data-theme='dark'] #contact-container {
+	background-color: #111a1c;
+}
+
+:root[data-theme='dark'] .service-card,
+:root[data-theme='dark'] .job-card {
+	border-color: rgba(255, 255, 255, 0.1);
+	background: rgba(27, 40, 42, 0.84);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+:root[data-theme='dark'] .job-card:hover {
+	border-color: #46a88d;
+	box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+}
+
+:root[data-theme='dark'] .chatbot-container {
+	border-color: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme='dark'] .chatbot-window {
+	background:
+		radial-gradient(circle at 92% 85%, rgba(24, 124, 100, 0.18), transparent 28%),
+		#1a2527;
+}
+
+:root[data-theme='dark'] .chat-message.bot {
+	color: #e1ece7;
+	background: #293a3a;
+}
+
+:root[data-theme='dark'] .contact-form-card {
+	color: #edf5f1;
+	background: #1a2527;
+}
+
+:root[data-theme='dark'] .contact-form-heading {
+	color: #9fb0ad;
+	border-color: rgba(255, 255, 255, 0.11);
+}
+
+:root[data-theme='dark'] .contact-field { color: #dce8e3; }
+
+:root[data-theme='dark'] .contact-field input,
+:root[data-theme='dark'] .contact-field textarea {
+	color: #edf5f1;
+	border-color: #526361;
+}
+
+:root[data-theme='dark'] .contact-field input::placeholder,
+:root[data-theme='dark'] .contact-field textarea::placeholder { color: #788985; }
+
+@media (max-width: 760px) {
+	:root[data-theme='dark'] .nav-menu { background: #111a1c; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body { transition: none; }
+}

@@ -1,0 +1,7 @@
+services:
+  portfolio:
+    build: .
+    container_name: revolio-portfolio
+    restart: unless-stopped
+    ports:
+      - "80:80"

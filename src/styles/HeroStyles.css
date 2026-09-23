@@ -1,32 +1,39 @@
-/* Contenedor del héroe */
 #hero-container{
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 5rem;
-  min-height: 100vh;          /* ocupa la pantalla */        
-  margin: 10%;
+  justify-content: space-between;
+  gap: clamp(2rem, 8vw, 7rem);
+  min-height: min(760px, 92vh);
+  padding: 6rem 0 5rem;
 }
 
 /* Título: responsive con clamp */
 .text-1{
-  font-size: clamp(2rem, 6vw, 4rem);  /* 2rem–4rem según viewport */
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.75rem, 6vw, 5.8rem);
   line-height: 1.1;
   margin: 0 0 1rem;
+  letter-spacing: -0.04em;
 }
 
 /* Texto: limitar ancho para mejor lectura */
 .text-container{
-  max-width: 60ch;
+  max-width: 58ch;
+  color: #526267;
+  font-size: 1.1rem;
+  line-height: 1.75;
 }
+
+#box1 > div:first-child { color: #187c64 !important; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; }
 
 /* ¡No uses img global! Solo la del héroe */
 #hero-container img{
-  width: min(38vw, 90%);    /* usa porcentaje o límite */
-  height: auto;               /* mantiene proporción */
-  aspect-ratio: 4 / 5;        /* opcional: mantiene formato */
+  width: min(360px, 35vw);
+  height: min(450px, 55vw);
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 2rem;
+  box-shadow: 20px 22px 0 #f7c979;
 }
 
 /* Responsive: en tablet/móvil apilar y centrar */
@@ -34,10 +41,13 @@
   #hero-container{
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 7rem 0 4rem;
   }
   #hero-container img{
-    width: min(80vw, 40%);
+    width: min(72vw, 300px);
+    height: min(90vw, 375px);
   }
 }
 

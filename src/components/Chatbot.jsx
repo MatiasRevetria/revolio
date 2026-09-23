@@ -1,46 +1,76 @@
-import React, { useState } from "react";
-import '../styles/Chatbot.css'
-import { Form } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react';
+import usePreferences from '../hooks/usePreferences';
+import '../styles/Chatbot.css';
 
 const Chatbot = () => {
-    const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const messagesRef = useRef(null);
+  const { copy } = usePreferences();
 
-    const options = [
-        {question:"Who are you?", answer:"I'm Matías Revetria, a full stack developer and senior Computer Engineering student."},
-        {question:"What technologies do you use?",answer:"I work with Javascript/Typescript, Node.js, Express, React, Bootstrap, and more."},
-        {question:"Work experience?", answer:"I work at IsCoders building custom solutions for web apps since 2024 and I also do freelance projects like this portfolio to continue improving my skills."}
-    ];
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTo({
+        top: messagesRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [messages]);
 
-    const handleQuestion = (option) => {
-        setMessages((prev) => [
-            ...prev,
-            {from: 'user', text:option.question},
-            {from: 'bot', text: option.answer}
-        ]);
-    };
+  const handleQuestion = (optionIndex) => {
+    setMessages((current) => [
+      ...current,
+      { from: 'user', optionIndex },
+      { from: 'bot', optionIndex },
+    ]);
+  };
 
-    return (
-        <>
-         <div className="chatbot-container">
-            <div className="chatbot-window">
-                {messages.length == 0 ? (<h1 className="idk"> Let's Talk!</h1>) :messages.map((msg,index)=>(
-                    <button key={index} className={`chat-message ${msg.from}`}>
-                        {msg.text}
-                    </button>
-                ))}
+  return (
+    <section className="chatbot-section" aria-labelledby="chatbot-title">
+      <div className="chatbot-heading">
+        <span>{copy.chat.kicker}</span>
+        <h2 id="chatbot-title">{copy.chat.title}</h2>
+      </div>
+
+      <div className="chatbot-container">
+        <div className="chatbot-window" aria-live="polite">
+          <div className="chatbot-status">
+            <span /> {copy.chat.available}
+          </div>
+
+          {messages.length === 0 ? (
+            <div className="chatbot-empty">
+              <span>{copy.chat.start}</span>
+              <h3>{copy.chat.greeting}</h3>
+              <p>{copy.chat.empty}</p>
             </div>
-            <div className="chatbot-options">
-                {options.map((option,index)=>(
-                    <button key={index} onClick={()=> handleQuestion(option)}>
-                        {option.question}
-                    </button>
-                ))
-                }
+          ) : (
+            <div className="chatbot-messages" ref={messagesRef}>
+              {messages.map((message, index) => (
+                <p key={`${message.from}-${index}`} className={`chat-message ${message.from}`}>
+                  {message.from === 'user'
+                    ? copy.chat.options[message.optionIndex].question
+                    : copy.chat.options[message.optionIndex].answer}
+                </p>
+              ))}
             </div>
-         </div>
-        </>
-    )
+          )}
+        </div>
+
+        <div className="chatbot-options">
+          <span className="chatbot-label">{copy.chat.askAbout}</span>
+          <div className="chatbot-option-list">
+            {copy.chat.options.map((option, index) => (
+              <button type="button" key={option.question} onClick={() => handleQuestion(index)}>
+                <span>0{index + 1}</span>
+                {option.question}
+                <span aria-hidden="true">↗</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
-
 
 export default Chatbot;

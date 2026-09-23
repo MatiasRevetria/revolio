@@ -1,8 +1,19 @@
-import React, {useRef, useEffect} from "react";
-import '../styles/Job.css'
+import { useEffect, useRef } from 'react';
+import usePreferences from '../hooks/usePreferences';
+import '../styles/Job.css';
+
+const projectLinks = [
+    'https://wappmail.netlify.app/',
+    'https://goldbeginning.com.ar',
+    'https://lapestemarinera.revema.com.ar',
+    'https://www.merkansas.com.ar',
+    'https://dralourdesmazo.ar',
+    '#hero',
+];
 
 
 const Job = ()=> {
+    const { copy } = usePreferences();
     const refTitle = useRef();
     const refJobs = useRef();
 
@@ -17,29 +28,31 @@ const Job = ()=> {
         },{threshold:0.3});
         if(refTitle.current) observer.observe(refTitle.current);
         if(refJobs.current) observer.observe(refJobs.current);
+        return () => observer.disconnect();
     },[]);
 
-    const jobs = [
-        {title:'WappMail',description:'WappMail is a massive sending platform for whatsapp and email campaigns. I build it with Typescript, React and Tailwind',time:'3 month',link:'https://wappmail.netlify.app/'},
-        {title:'TalentoTech',description:'This site was build to achive the frontend developer certification. Frontend Vanilla',time:'1 month',link:'https://matiasrevetria.github.io/RevetriaTalentoTech/'},
-        {title:'Portfolio',description:'My personal portfolio build with React and bootstrap',time:'1 month',link:''},            {title:'React final project', description:'This is an ecommerce build with react and bootstrap. The backend is simulated using mockapi to get, create and edit the products',time:'2 month', link:'https://proyecto-final-revetria-2025-react.netlify.app/'}
-        ]
+    const jobs = copy.jobs.projects.map((project, index) => ({
+        ...project,
+        link: projectLinks[index],
+    }));
 
     return(
     <>
     <div className="main-container">
         <div className="first-container appear-y" ref={refTitle}>
-            <h1>Jobs</h1>
+            <h1>{copy.jobs.title}</h1>
         </div>
         <div className="row_row-cols-2" >
             <div className="jobs-container appear-x" ref={refJobs}>
                 {jobs.map((job,index)=>(
-                    <a href={job.link}>
-                        <button className="job-card" key={index}>
-                        <h1>{job.title}</h1>
+                    <a href={job.link} key={job.title} target={job.link.startsWith('#') ? undefined : '_blank'} rel={job.link.startsWith('#') ? undefined : 'noreferrer'}>
+                        <article className="job-card">
+                        <span className="job-number">0{index + 1}</span>
+                        <h2>{job.title}</h2>
                         <p>{job.description}</p>
-                        <p>{job.time}</p>
-                    </button>
+                        <span className="job-tag">{job.tag}</span>
+                        <span className="job-arrow" aria-hidden="true">↗</span>
+                    </article>
                     </a>
                 ))}
             </div>

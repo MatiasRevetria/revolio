@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import '../styles/HeroStyles.css'
-import yo from'../assets/yo3.jpg'
+import { useEffect, useRef } from 'react';
+import usePreferences from '../hooks/usePreferences';
+import '../styles/HeroStyles.css';
+import yo from '../assets/yo3.jpg';
 
 const Hero = () => {
+    const { copy } = usePreferences();
     const refBox1 = useRef();
     const refBox2 = useRef();
 
@@ -20,6 +22,7 @@ const Hero = () => {
         );
         if (refBox1.current) observer.observe(refBox1.current);
         if (refBox2.current) observer.observe(refBox2.current);
+        return () => observer.disconnect();
     },[])
     
     return(
@@ -27,12 +30,12 @@ const Hero = () => {
 
             <div id="hero-container">
                 <div id="box1" ref={refBox1} className="appear-x">
-                    <div style={{color:'green'}}>AVAILABLE FOR WORK</div>
-                    <div><h1 className="text-1">Hi, I'm a Software Engineer</h1></div>
-                    <div className="text-container"><p>I'm Matias, a senior Computer Engineering student currently completing the final courses of my degree. For the past five years, I've been dedicated to creating smart solutions to complex problems, applying all the knowledge I've gained both as a student and as a developer. I'm constantly learning and gaining new experiences to further improve my work as a software engineer.</p></div>
+                    <div>{copy.hero.availability}</div>
+                    <div><h1 className="text-1">{copy.hero.title}</h1></div>
+                    <div className="text-container"><p>{copy.hero.description}</p></div>
                 </div>
                 <div id="box2" ref={refBox2} className="appear">
-                    <img src={yo} alt="yo"/>
+                    <img src={yo} alt={copy.hero.imageAlt}/>
                 </div>
             </div>
 

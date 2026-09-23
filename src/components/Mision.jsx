@@ -1,59 +1,58 @@
-import React, {useRef, useEffect} from "react";
-import '../styles/Mision.css'
+import { useEffect, useRef } from 'react';
+import usePreferences from '../hooks/usePreferences';
+import '../styles/Mision.css';
 
-const Mision = ()=>{
-    const refArticle = useRef();
-    const refSkills = useRef();
+const Mision = () => {
+  const { copy } = usePreferences();
+  const refArticle = useRef(null);
+  const refSkills = useRef(null);
 
-    useEffect(()=>{
-        const observer = new IntersectionObserver(
-            (entries,obs)=>{
-                entries.forEach((entry)=>{
-                    if (entry.isIntersecting){
-                        entry.target.classList.add('show');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            },
-        {thershold: 0.3}
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
     );
+
     if (refArticle.current) observer.observe(refArticle.current);
     if (refSkills.current) observer.observe(refSkills.current);
-    },[]);
 
-    return (
-        <>
-        <div className="mision-container container-md">
-            <section id="mision-article" ref={refArticle} className="appear-y">
-                
-            <h2>My mission is to assist people, startups and enterprises design and develop innovative, reliable, engaging and user-friendly software solutions </h2>
-            </section>
-            <section id="skills" ref={refSkills} className="appear-x">
-            <div id="left-mision">
-                <h1>HOW CAN I HELP YOU?</h1>
-            </div>
-            <div id="right-mision" className="row row-cols-2">
-                <div className="col">
-                    <h2>Frontend Development</h2>
-                    Attractive, fast, and adaptable interfaces that offer a fluid user experience on any device.
-                </div>
-                <div className="col">
-                    <h2>Backend Development</h2>
-                    Robust and secure architectures that guarantee the performance, scalability, and reliability of your applications. 
-                </div>
-                <div className="col">
-                    <h2>Full-Stack Development</h2>
-                    Complete solutions that integrate the interface and internal logic, optimizing every layer of the system.
-                </div>
-                <div className="col">
-                    <h2>API Development</h2>
-                    Secure, scalable, and well-documented APIs for fast and reliable integrations.
-                </div>
-            </div>
-            </section>
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="mision-container">
+      <section id="mision-article" ref={refArticle} className="appear-y">
+        <span className="mision-kicker">{copy.mission.kicker}</span>
+        <h2>
+          {copy.mission.text}
+          <em>{copy.mission.emphasis}</em>
+        </h2>
+      </section>
+
+      <section id="skills" ref={refSkills} className="appear-x">
+        <div id="left-mision">
+          <span>{copy.mission.servicesLabel}</span>
+          <h2>{copy.mission.servicesTitle}</h2>
         </div>
-        </>
-    );
-}
+        <div id="right-mision">
+          {copy.mission.services.map((service, index) => (
+            <article className="service-card" key={service.title}>
+              <span>0{index + 1}</span>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
 
-export default Mision
+export default Mision;
